@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caja de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .question-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="question-box">
+        <h2>Haz una Pregunta</h2>
+        <input type="text" id="question" placeholder="Escribe tu pregunta...">
+        <button onclick="answerQuestion()">Preguntar</button>
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        function answerQuestion() {
+            const question = document.getElementById('question').value.trim();
+            const responseElement = document.getElementById('response');
+
+            if (question) {
+                responseElement.innerHTML = `La respuesta a tu pregunta: "<strong>${question}</strong>" es: <em>Lo siento, aún no tengo una respuesta.</em>`;
+            } else {
+                responseElement.innerHTML = "<em>Por favor, ingresa una pregunta.</em>";
+            }
+
+            // Limpiar el campo de entrada
+            document.getElementById('question').value = '';
+        }
+    </script>
+</body>
+</html>
