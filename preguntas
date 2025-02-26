@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .comment {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 400px;
+            position: relative;
+        }
+
+        .comment p {
+            margin: 0;
+        }
+
+        .comment .date {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <input type="text" id="commentInput" placeholder="Escribe tu comentario...">
+        <button onclick="addComment()">Agregar Comentario</button>
+    </div>
+
+    <div id="commentsSection"></div>
+
+    <script>
+        function addComment() {
+            const commentInput = document.getElementById("commentInput");
+            const commentText = commentInput.value.trim();
+
+            if (commentText !== "") {
+                // Obtener la fecha y hora actual
+                const currentDate = new Date();
+                const formattedDate = currentDate.toLocaleString(); // Ejemplo: 2/26/2025, 2:45:00 PM
+
+                // Crear el comentario
+                const commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                // Crear el contenido del comentario
+                const commentContent = `
+                    <p>${commentText}</p>
+                    <p class="date">${formattedDate}</p>
+                `;
+
+                commentDiv.innerHTML = commentContent;
+
+                // Crear el botón para eliminar el comentario
+                const deleteButton = document.createElement("button");
+                deleteButton.classList.add("delete-btn");
+                deleteButton.textContent = "Eliminar";
+                deleteButton.onclick = function() {
+                    commentDiv.remove(); // Eliminar el comentario
+                };
+
+                // Agregar el botón de eliminar al comentario
+                commentDiv.appendChild(deleteButton);
+
+                // Mostrar el comentario en la página
+                const commentsSection = document.getElementById("commentsSection");
+                commentsSection.appendChild(commentDiv);
+
+                // Limpiar el campo de entrada
+                commentInput.value = "";
+            } else {
+                alert("Por favor, ingresa un comentario.");
+            }
+        }
+    </script>
+
+</body>
+</html>
