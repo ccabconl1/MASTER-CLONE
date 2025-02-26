@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de Colores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s, color 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="colorButton" onclick="changeColor()">Haz clic para cambiar colores</button>
+
+    <script>
+        function changeColor() {
+            // Cambiar color de fondo de la página
+            const body = document.body;
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F39C12', '#8E44AD'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            body.style.backgroundColor = randomColor;
+
+            // Cambiar color del botón
+            const button = document.getElementById('colorButton');
+            const buttonColors = ['#FFFFFF', '#2C3E50', '#ECF0F1', '#F39C12', '#D35400'];
+            const randomButtonColor = buttonColors[Math.floor(Math.random() * buttonColors.length)];
+            button.style.backgroundColor = randomButtonColor;
+            button.style.color = (randomButtonColor === '#FFFFFF' || randomButtonColor === '#ECF0F1') ? '#333' : '#fff';
+        }
+    </script>
+
+</body>
+</html>
